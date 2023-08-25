@@ -1,0 +1,12 @@
+entity.city.collection:
+  title: 'Cities'
+  route_name: entity.city.collection
+  parent: system.admin_content
+  description: 'List of cities'
+  weight: 10
+entity.city.admin.structure.settings:
+  title: City Settings
+  description: 'Configure city entity'
+  route_name:  entity.location.city_settings
+  parent: system.admin_structure
+

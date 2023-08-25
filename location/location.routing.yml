@@ -1,0 +1,47 @@
+entity.city.canonical:
+  path: '/admin/location/city/{city}'
+  defaults:
+    _entity_view: 'city'
+    _title: 'City Content'
+  requirements:
+    _entity_access: 'city.view'
+
+entity.city.collection:
+  path: '/admin/location/cities'
+  defaults:
+    _entity_list: 'city'
+    _title: 'City List'
+  requirements:
+    _permission: 'view city entity'
+
+entity.location.city_add:
+  path: '/admin/location/city/add'
+  defaults:
+    _entity_form: city.add
+    _title: 'Add City'
+  requirements:
+    _entity_create_access: 'city'
+
+entity.city.edit_form:
+  path: '/admin/location/city/{city}/edit'
+  defaults:
+    _entity_form: city.edit
+    _title: 'Edit city'
+  requirements:
+    _entity_access: 'city.edit'
+
+entity.city.delete_form:
+  path: '/admin/location/city/{city}/delete'
+  defaults:
+    _entity_form: city.delete
+    _title: 'Delete city'
+  requirements:
+    _entity_access: 'city.delete'
+
+entity.location.city_settings:
+  path: 'admin/structure/city_settings'
+  defaults:
+    _form: '\Drupal\location\Form\CitySettingsForm'
+    _title: 'City Settings'
+  requirements:
+    _permission: 'administer city entity'

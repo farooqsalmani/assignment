@@ -1,0 +1,72 @@
+# This migration enables to import city into title from a JSON file.
+# with other details in respective fields.
+id: city_to_title
+label: City to title field migration
+migration_group: location
+source:
+  plugin: url
+  # Get data from a local file.
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+  # File corresponding to root directory.
+  urls:
+    - modules/custom/location_migration/sources/cities.json
+  # An xpath-like selector corresponding to the items to be imported.
+  item_selector: /
+  # Under 'fields', we list the data items to be imported.
+  fields:
+    -
+      name: src_id
+      label: 'Unique city identifier'
+      selector: _id
+    -
+      name: src_city
+      label: 'Name of the city'
+      selector: city
+    -
+      name: src_lat
+      label: 'Location cordinate latitude'
+      selector: loc/0
+    -
+      name: src_long
+      label: 'Location cordinate longitude'
+      selector: loc/1
+    -
+      name: src_pop
+      label: 'Population'
+      selector: pop
+    -
+      name: src_state
+      label: 'Name of he State'
+      selector: state
+  # Under 'ids', we identify source fields populated above which will uniquely
+  # identify each imported item. The 'type' makes sure the migration map table
+  # uses the proper schema type for stored the IDs.
+  ids:
+    src_id:
+      type: integer
+process:
+  # Note that the source field names here (src_id, src_title etc..) were
+  # defined by the 'fields' configuration for the source plugin above.
+  type:
+    plugin: default_value
+    default_value: city
+  id: src_id
+  title:
+    plugin: default_value
+    default_value: '--'
+  city: src_city
+  lat: src_lat
+  long: src_long
+  pop: src_pop
+  state: src_state
+  user_id:
+    plugin: default_value
+    default_value: 1
+destination:
+  plugin: 'entity:city'
+migration_dependencies: {  }
+dependencies:
+  enforced:
+    module:
+      - location_migration

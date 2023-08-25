@@ -1,0 +1,6 @@
+location._city_add:
+  route_name: entity.location.city_add
+  title: 'Add City'
+  appears_on:
+    - entity.city.collection
+    - entity.city.canonical

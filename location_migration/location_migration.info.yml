@@ -1,0 +1,9 @@
+type: module
+name: Location Migrations 
+description: 'Enables the migration of locations'
+package: custom
+core_version_requirement: ^8 || ^9
+dependencies:
+  - drupal:migrate
+  - migrate_plus:migrate_plus
+  
